@@ -12,6 +12,8 @@
 
 This Application is a dummy OAuth2 Authorization server issuing JWT Tokens. It can be used to test Authorization scenarios. It leverages Spring Boot and is available as a docker container. There is also a Kubernetes Manifest available (Targeting Kyma https://kyma-project.io).
 
+As this is very lightweight, there is no plan to support more than one instance at a time (Key is generated locally and is not shared accross instances).
+
 
 
 ## Java Build
@@ -78,3 +80,5 @@ After deployment you can access the swagger documentation under https://{kymahos
 ## Docker Repository
 
 You can find this in Docker Hub as well: https://hub.docker.com/r/andy008/jwt_issuer/ 
+
+Run locally: `docker run -d --rm -p 8080:8080 --name jwt_issuer andy008/jwt_issuer:1.0.0`
