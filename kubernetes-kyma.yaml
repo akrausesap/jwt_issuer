@@ -1,0 +1,59 @@
+
+apiVersion: gateway.kyma.cx/v1alpha2
+kind: Api
+metadata:
+  name: personservice
+spec:
+  hostname: #changeme
+  service:
+    name: tokenissuer
+    port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:    
+     app: tokenissuer
+     version: "1.0.0"
+  annotations:
+     auth.istio.io/80: NONE
+  name: tokenissuer
+spec:
+  ports:
+  - name: http
+    port: 8080
+  selector:
+     app: tokenissuer
+     version: "1.0.0"
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   labels:
+      mf_version: "1"
+      app: tokenissuer
+      version: "1.0.0"
+   name: tokenissuer   
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: tokenissuer
+   template:
+      metadata:
+         labels:    
+            app: tokenissuer
+            version: "1.0.0"
+         annotations:
+            sidecar.istio.io/inject: "true"
+      spec:    
+         containers:
+           - name: tokenissuer
+             image: "andy008/jwt_issuer:1.0.0"
+             imagePullPolicy: Always              
+             ports:
+              - containerPort: 8080
+                name: http  
+                                                          
