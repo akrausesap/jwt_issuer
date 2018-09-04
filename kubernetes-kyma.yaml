@@ -2,7 +2,7 @@
 apiVersion: gateway.kyma.cx/v1alpha2
 kind: Api
 metadata:
-  name: personservice
+  name: tokenissuer
 spec:
   hostname: #changeme
   service:
