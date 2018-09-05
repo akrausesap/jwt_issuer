@@ -68,7 +68,7 @@ public class JwtService {
 				parameters.getIssuer());		
 							
 		if (parameters.getScopes() != null) {
-			claims.setStringListClaim("scopes",				 
+			claims.setStringListClaim("scope",				 
 					Arrays.asList(parameters.getScopes()));		
 		}
 		

@@ -1,10 +1,11 @@
 
-apiVersion: gateway.kyma.cx/v1alpha2
+apiVersion: gateway.kyma-project.io/v1alpha2
 kind: Api
 metadata:
   name: tokenissuer
 spec:
-  hostname: #changeme
+  #changeme (if needed)
+  hostname: tokenissuer
   service:
     name: tokenissuer
     port: 8080
